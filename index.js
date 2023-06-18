@@ -23,6 +23,10 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 
 // STEP9: Next we will start creating the players and enemies using pure rectangles cos a lot of games are actually created that way. And we are going to be using object oriented programmig method and we also start by creating classes.
 
+// This line of code came here following the instructions from STEP21, and here we are declearing a global variable called gravity and set it first to 0.2, then afer that, would go to the update method and write another line of code saying this.velocity.yAxis += gravity. And even after that, we would go to velocity: yAxis  on the player and set if from 10 to 0
+
+const gravity = 0.2;
+
 class Sprite {
   // Note that we are wrapping the podition and velocity in one curly bracket to remember the order in future. so wrapping them round the curly bracket means the order does not matter anymore. So to that effect we would go down to the sprite instantiation and refactor it as well with the curly brackets and this is going to happen also because we are going to be adding the velocity object/property on the sprite instance down below.
   constructor({ position, velocity }) {
@@ -50,9 +54,17 @@ class Sprite {
 
   update() {
     // so when we call the update, the first thing we wanna do is to also call the call the draw method.
+
+    // This line of code came here following the instructions from STEP21, and here we are adding the gravity to the velocity on the yAxis of our player on the new sprite player ....this.velocity.yAxis += gravity
+
+    // this.velocity.yAxis += gravity; : this line of code was commented out because following from STEP22, we have to put this line as an else statement under the update method.
+
+    //
     this.draw();
     //  And for our player and enemy to fall, we need to go ahead and select their positions
+
     this.position.yAxis += this.velocity.yAxis;
+
     // So we are adding 10 to is because we are saying over time our position is going to have a 10px added onto it for each frame we loop over, but in order to make this takes effect, we need to call the update within our animationLoop on STEP16 and also note that the value was set to this.velocity.yAxis following STEP19.
 
     // so we are gonna be writing an if statement from STEP20
@@ -63,7 +75,11 @@ class Sprite {
       canvas.height
     ) {
       this.velocity.yAxis = 0;
-      //  this.velocity.yAxis = 0, would stop our obkect from moving downwards outside of the screen.
+
+      //  this.velocity.yAxis = 0, would stop our object from moving downwards outside of the screen.
+    } else {
+      this.velocity.yAxis += gravity;
+      // the else statement was pulled here following the STEP22 and this will the gravity to let the objects settle at the bottom of our screen.
     }
   }
 }
@@ -82,7 +98,8 @@ const player = new Sprite({
   velocity: {
     xAxis: 0,
     // note that we changed the yAxis of the player from 0 to 10 just right after executing STEP19.
-    yAxis: 10,
+    // note that the instruction from STEP21 changes the velocity on the yAxisfrom 10 back to 0
+    yAxis: 0,
   },
 });
 // console.log(player);
@@ -142,4 +159,6 @@ animationLoop();
 
 // STEP20: After STEP19 which was executed on the update method, we would also write in there an if statement that says, if this.position.yAxis [which would go ahead and give us the top of the sprites or the rectangle in form of our objects] + this.height [so now lets quickly go and add a height property on our sprite cos we dont have one yet]
 
-// continue from STEP21---- setting the gravity, video time 26mins:18secs
+//   STEP21----  Creating the Gravity, so we would go above our Sprite class and create a global variable called Gravity and set it first to 0.2 to start. That should make a fall relatively on the slower side. After declaring the global variable called gravity, we would go to our update method and call "this.velocity.yAxis += gravity" then we go to player and change velocity on the yAxis from 10 to 0
+
+// STEP22: After step21, you would notice that our objects are still falling off the bottom of screen, so so solve that, we would have to take the code "this.velocity.yAxis += gravity" and add it as an else sratement on the update method
