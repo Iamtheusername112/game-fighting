@@ -162,3 +162,13 @@ animationLoop();
 //   STEP21----  Creating the Gravity, so we would go above our Sprite class and create a global variable called Gravity and set it first to 0.2 to start. That should make a fall relatively on the slower side. After declaring the global variable called gravity, we would go to our update method and call "this.velocity.yAxis += gravity" then we go to player and change velocity on the yAxis from 10 to 0
 
 // STEP22: After step21, you would notice that our objects are still falling off the bottom of screen, so so solve that, we would have to take the code "this.velocity.yAxis += gravity" and add it as an else sratement on the update method
+
+// STEP23; Now since our player and enemy has been successfully created and gravity added to not make them fall below our screen, we would go ahead and make our characters be able to move using "Eventlisteners",
+
+window.addEventListener("keydown", (event) => {
+  console.log(event.key);
+
+  // now setting up the keys which the player is going to be using to play the game by suing switch case statements.
+});
+
+// continue form the event listeners on key down video tome: 31:45
